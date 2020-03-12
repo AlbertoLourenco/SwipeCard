@@ -7,16 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16C8AF25241A63A100B62E35 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF24241A63A100B62E35 /* Card.swift */; };
+		16C8AF27241A63AF00B62E35 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C8AF26241A63AF00B62E35 /* Card.xib */; };
+		16C8AF29241A64A000B62E35 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF28241A64A000B62E35 /* User.swift */; };
+		16C8AF2B241A7E3200B62E35 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF2A241A7E3200B62E35 /* CardView.swift */; };
 		16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E3D2419ECBA00064343 /* AppDelegate.swift */; };
 		16FB7E402419ECBA00064343 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E3F2419ECBA00064343 /* SceneDelegate.swift */; };
 		16FB7E422419ECBA00064343 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E412419ECBA00064343 /* ContentView.swift */; };
 		16FB7E442419ECBB00064343 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16FB7E432419ECBB00064343 /* Assets.xcassets */; };
 		16FB7E472419ECBB00064343 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16FB7E462419ECBB00064343 /* Preview Assets.xcassets */; };
 		16FB7E4A2419ECBB00064343 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16FB7E482419ECBB00064343 /* LaunchScreen.storyboard */; };
-		16FB7E522419F73C00064343 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E512419F73C00064343 /* CardView.swift */; };
+		16FB7E522419F73C00064343 /* CardUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E512419F73C00064343 /* CardUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16C8AF24241A63A100B62E35 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		16C8AF26241A63AF00B62E35 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
+		16C8AF28241A64A000B62E35 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		16C8AF2A241A7E3200B62E35 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		16FB7E3A2419ECBA00064343 /* SwipeCardUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeCardUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FB7E3D2419ECBA00064343 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16FB7E3F2419ECBA00064343 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +33,7 @@
 		16FB7E462419ECBB00064343 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		16FB7E492419ECBB00064343 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16FB7E4B2419ECBB00064343 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16FB7E512419F73C00064343 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		16FB7E512419F73C00064343 /* CardUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +47,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16C8AF2C241A7FA500B62E35 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				16FB7E4B2419ECBB00064343 /* Info.plist */,
+				16FB7E432419ECBB00064343 /* Assets.xcassets */,
+				16FB7E3D2419ECBA00064343 /* AppDelegate.swift */,
+				16FB7E3F2419ECBA00064343 /* SceneDelegate.swift */,
+				16FB7E482419ECBB00064343 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		16C8AF2D241A7FD700B62E35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				16C8AF2F241A7FED00B62E35 /* CardView */,
+				16FB7E412419ECBA00064343 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		16C8AF2E241A7FDD00B62E35 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				16C8AF28241A64A000B62E35 /* User.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		16C8AF2F241A7FED00B62E35 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				16C8AF26241A63AF00B62E35 /* Card.xib */,
+				16C8AF24241A63A100B62E35 /* Card.swift */,
+				16FB7E512419F73C00064343 /* CardUI.swift */,
+				16C8AF2A241A7E3200B62E35 /* CardView.swift */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
 		16FB7E312419ECBA00064343 = {
 			isa = PBXGroup;
 			children = (
@@ -58,13 +106,9 @@
 		16FB7E3C2419ECBA00064343 /* SwipeCardUI */ = {
 			isa = PBXGroup;
 			children = (
-				16FB7E3D2419ECBA00064343 /* AppDelegate.swift */,
-				16FB7E3F2419ECBA00064343 /* SceneDelegate.swift */,
-				16FB7E512419F73C00064343 /* CardView.swift */,
-				16FB7E412419ECBA00064343 /* ContentView.swift */,
-				16FB7E432419ECBB00064343 /* Assets.xcassets */,
-				16FB7E482419ECBB00064343 /* LaunchScreen.storyboard */,
-				16FB7E4B2419ECBB00064343 /* Info.plist */,
+				16C8AF2C241A7FA500B62E35 /* Application */,
+				16C8AF2E241A7FDD00B62E35 /* Entities */,
+				16C8AF2D241A7FD700B62E35 /* Views */,
 				16FB7E452419ECBB00064343 /* Preview Content */,
 			);
 			path = SwipeCardUI;
@@ -139,6 +183,7 @@
 				16FB7E4A2419ECBB00064343 /* LaunchScreen.storyboard in Resources */,
 				16FB7E472419ECBB00064343 /* Preview Assets.xcassets in Resources */,
 				16FB7E442419ECBB00064343 /* Assets.xcassets in Resources */,
+				16C8AF27241A63AF00B62E35 /* Card.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,9 +194,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C8AF2B241A7E3200B62E35 /* CardView.swift in Sources */,
 				16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */,
 				16FB7E402419ECBA00064343 /* SceneDelegate.swift in Sources */,
-				16FB7E522419F73C00064343 /* CardView.swift in Sources */,
+				16C8AF29241A64A000B62E35 /* User.swift in Sources */,
+				16C8AF25241A63A100B62E35 /* Card.swift in Sources */,
+				16FB7E522419F73C00064343 /* CardUI.swift in Sources */,
 				16FB7E422419ECBA00064343 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +340,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SwipeCardUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 8G88K2N9TE;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = SwipeCardUI/Info.plist;
+				INFOPLIST_FILE = SwipeCardUI/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +360,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SwipeCardUI/Preview Content\"";
 				DEVELOPMENT_TEAM = 8G88K2N9TE;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = SwipeCardUI/Info.plist;
+				INFOPLIST_FILE = SwipeCardUI/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
