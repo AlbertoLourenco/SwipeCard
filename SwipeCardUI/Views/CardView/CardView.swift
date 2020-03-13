@@ -17,31 +17,21 @@ enum SwipeAction {
 
 struct CardView: View {
     
-    var user: User!
+    var item: CardItem
+    
+    @Binding var isMoving: Bool
     
     @State var action: SwipeAction = .none
-    
     @State var dragState: CGSize = .zero
     
-    private var onRemove: (_ user: User) -> Void
-    private var thresholdPercentage: CGFloat = 0.5
-    
-    init(user: User, onRemove: @escaping (_ user: User) -> Void) {
-        
-        self.user = user
-        self.onRemove = onRemove
-    }
-    
-    private func getGesturePercentage(_ geometry: GeometryProxy, from gesture: DragGesture.Value) -> CGFloat {
-        gesture.translation.width / geometry.size.width
-    }
+    var onRemove: (_ item: CardItem) -> Void
     
     var body: some View {
         
         ZStack {
 
-            CardUI(user: user, action: action)
-                .frame(width: UIScreen.main.bounds.width - 60, height: 500)
+            CardUI(item: item, action: action)
+                .frame(width: UIScreen.main.bounds.width - 60, height: UIScreen.main.bounds.height - 280)
                 .clipped()
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .rotationEffect(Angle(degrees: Double(self.dragState.width / 15.0)))
@@ -52,6 +42,8 @@ struct CardView: View {
                 .gesture(
                     DragGesture()
                         .onChanged{ value in
+                            
+                            self.isMoving = true
                             
                             self.action = .none
                             
@@ -70,8 +62,10 @@ struct CardView: View {
                         }
                         .onEnded{ value in
                             
+                            self.isMoving = false
+                            
                             if self.action != .none {
-                                self.onRemove(self.user)
+                                self.onRemove(self.item)
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     self.action = .none
@@ -89,6 +83,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(user: User(order: 0, name: "Roberta Valença", imageName: "Avatar-1")) { user in }
+        CardView(item: CardItem(order: 0, text: "", imageName: "Avatar-1"),
+                 isMoving: .constant(false)) { user in }
     }
 }

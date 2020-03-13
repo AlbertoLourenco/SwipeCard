@@ -11,6 +11,7 @@ import UIKit
 class Card: UIView {
     
     @IBOutlet private weak var lblTitle: UILabel!
+    @IBOutlet private weak var vwActionMask: UIView!
     @IBOutlet private weak var imgAvatar: UIImageView!
     
     private let layerMask = CAGradientLayer()
@@ -23,11 +24,10 @@ class Card: UIView {
     }
     
     override func layoutSubviews() {
-        
         layerMask.frame = frame
     }
     
-    func configUI(frame: CGRect, user: User) {
+    func configUI(frame: CGRect, item: CardItem) {
         
         //  Card
         
@@ -40,7 +40,7 @@ class Card: UIView {
         
         //  Image
         
-        self.imgAvatar.image = UIImage(named: user.imageName)
+        self.imgAvatar.image = UIImage(named: item.imageName)
         self.imgAvatar.contentMode = .scaleAspectFill
         self.imgAvatar.layer.cornerRadius = 15
         self.imgAvatar.clipsToBounds = true
@@ -48,7 +48,7 @@ class Card: UIView {
         //  Title
         
         self.lblTitle.textColor = .white
-        self.lblTitle.text = user.name
+        self.lblTitle.text = item.text
         
         //  Mask - gradient
         
@@ -79,10 +79,42 @@ class Card: UIView {
         switch action {
             
             case .none:
+                UIView.animate(withDuration: 0.3) {
+                    self.vwActionMask.alpha = 0
+                }
                 self.emitterLayer.emitterCells = []
+                break
             
-            case .like, .superlike, .dislike:
+            case .like:
+                
+                UIView.animate(withDuration: 0.3) {
+                    self.vwActionMask.backgroundColor = UIColor.black
+                    self.vwActionMask.alpha = 0.3
+                }
+            
                 emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
+                break
+            
+            case .superlike:
+                
+                UIView.animate(withDuration: 0.3) {
+                    self.vwActionMask.backgroundColor = UIColor.blue
+                    self.vwActionMask.alpha = 0.1
+                }
+                
+                emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
+                break
+            
+            case .dislike:
+                
+                UIView.animate(withDuration: 0.3) {
+                    self.vwActionMask.backgroundColor = UIColor.red
+                    self.vwActionMask.alpha = 0.3
+                }
+                
+                self.emitterLayer.emitterCells = []
+                // emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
+                break
         }
     }
     

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1645D27C241B248500470210 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1645D27B241B248500470210 /* OptionButton.swift */; };
 		16C8AF25241A63A100B62E35 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF24241A63A100B62E35 /* Card.swift */; };
 		16C8AF27241A63AF00B62E35 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C8AF26241A63AF00B62E35 /* Card.xib */; };
-		16C8AF29241A64A000B62E35 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF28241A64A000B62E35 /* User.swift */; };
+		16C8AF29241A64A000B62E35 /* CardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF28241A64A000B62E35 /* CardItem.swift */; };
 		16C8AF2B241A7E3200B62E35 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF2A241A7E3200B62E35 /* CardView.swift */; };
 		16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E3D2419ECBA00064343 /* AppDelegate.swift */; };
 		16FB7E402419ECBA00064343 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E3F2419ECBA00064343 /* SceneDelegate.swift */; };
@@ -21,9 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1645D27B241B248500470210 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		16C8AF24241A63A100B62E35 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		16C8AF26241A63AF00B62E35 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
-		16C8AF28241A64A000B62E35 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		16C8AF28241A64A000B62E35 /* CardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItem.swift; sourceTree = "<group>"; };
 		16C8AF2A241A7E3200B62E35 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		16FB7E3A2419ECBA00064343 /* SwipeCardUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeCardUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16FB7E3D2419ECBA00064343 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				16C8AF2F241A7FED00B62E35 /* CardView */,
 				16FB7E412419ECBA00064343 /* ContentView.swift */,
+				1645D27B241B248500470210 /* OptionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -71,7 +74,7 @@
 		16C8AF2E241A7FDD00B62E35 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				16C8AF28241A64A000B62E35 /* User.swift */,
+				16C8AF28241A64A000B62E35 /* CardItem.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -196,8 +199,9 @@
 			files = (
 				16C8AF2B241A7E3200B62E35 /* CardView.swift in Sources */,
 				16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */,
+				1645D27C241B248500470210 /* OptionButton.swift in Sources */,
 				16FB7E402419ECBA00064343 /* SceneDelegate.swift in Sources */,
-				16C8AF29241A64A000B62E35 /* User.swift in Sources */,
+				16C8AF29241A64A000B62E35 /* CardItem.swift in Sources */,
 				16C8AF25241A63A100B62E35 /* Card.swift in Sources */,
 				16FB7E522419F73C00064343 /* CardUI.swift in Sources */,
 				16FB7E422419ECBA00064343 /* ContentView.swift in Sources */,

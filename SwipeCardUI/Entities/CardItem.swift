@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  CardItem.swift
 //  SwipeCardUI
 //
 //  Created by Alberto Lourenço on 3/12/20.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct User: Identifiable {
+struct CardItem: Identifiable {
     
     var id = UUID()
     var order: Int
-    var name: String
+    var text: String
     var imageName: String
 }

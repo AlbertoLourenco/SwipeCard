@@ -10,16 +10,14 @@ import SwiftUI
 
 struct CardUI: UIViewRepresentable {
     
-    var user: User!
+    var item: CardItem!
     var action: SwipeAction = .none
     
     func makeUIView(context: UIViewRepresentableContext<Self>) -> Card {
         
         let vwCard = Card().loadNib()
-        vwCard.configUI(frame: UIScreen.main.bounds, user: user)
-        
-        vwCard.updateEmitters(action: .like)
-        
+        vwCard.configUI(frame: UIScreen.main.bounds, item: item)
+
         return vwCard
     }
     
@@ -31,6 +29,6 @@ struct CardUI: UIViewRepresentable {
 
 struct CardUI_Previews: PreviewProvider {
     static var previews: some View {
-        CardUI(user: User(order: 0, name: "Roberta Valença", imageName: "Avatar-1"), action: .like)
+        CardUI(item: CardItem(order: 0, text: "", imageName: "Avatar-1"), action: .like)
     }
 }

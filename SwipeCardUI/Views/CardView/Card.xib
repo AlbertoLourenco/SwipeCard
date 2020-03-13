@@ -16,32 +16,38 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5sY-cl-d9j">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKu-Q0-WTj">
-                    <rect key="frame" x="20" y="686" width="374" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="kDc-1y-VK1"/>
-                    </constraints>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEV-kw-iQd">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKu-Q0-WTj">
+                    <rect key="frame" x="20" y="692" width="374" height="24"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="5sY-cl-d9j" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Liw-47-zuw"/>
+                <constraint firstItem="EEV-kw-iQd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Pjb-ow-lFb"/>
+                <constraint firstItem="EEV-kw-iQd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TVj-9o-03j"/>
                 <constraint firstItem="5sY-cl-d9j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aEj-8f-zfI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PKu-Q0-WTj" secondAttribute="trailing" constant="20" id="dSg-7y-BP6"/>
                 <constraint firstItem="5sY-cl-d9j" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="j7z-4K-qEx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PKu-Q0-WTj" secondAttribute="bottom" constant="20" id="kDa-Zv-CUa"/>
                 <constraint firstItem="PKu-Q0-WTj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="mhf-Oq-3MD"/>
+                <constraint firstItem="EEV-kw-iQd" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="q4R-g9-TmW"/>
                 <constraint firstItem="5sY-cl-d9j" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="syj-01-xi7"/>
+                <constraint firstItem="EEV-kw-iQd" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="z6E-xs-qOI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="imgAvatar" destination="5sY-cl-d9j" id="GQ7-Jw-Eai"/>
                 <outlet property="lblTitle" destination="PKu-Q0-WTj" id="H8o-Ei-zDZ"/>
+                <outlet property="vwActionMask" destination="EEV-kw-iQd" id="oQN-NP-s5e"/>
             </connections>
-            <point key="canvasLocation" x="-170" y="7"/>
+            <point key="canvasLocation" x="-171.01449275362319" y="6.5217391304347831"/>
         </view>
     </objects>
 </document>

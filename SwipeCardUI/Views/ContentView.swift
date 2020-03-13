@@ -10,67 +10,109 @@ import SwiftUI
 
 struct Contants {
 
-    static var page_01: Array<User> = [User(order: 0, name: "Gabriela Ramos", imageName: "Avatar-3"),
-                                       User(order: 1, name: "Maria Eduarda", imageName: "Avatar-2"),
-                                       User(order: 2, name: "Roberta Valença", imageName: "Avatar-1")]
-    
-    static var page_02: Array<User> = [User(order: 3, name: "AAAAAAAA", imageName: "Avatar-2"),
-                                       User(order: 4, name: "SSSSSSS", imageName: "Avatar-3"),
-                                       User(order: 5, name: "GGGGGGGG", imageName: "Avatar-1"),
-                                       User(order: 6, name: "DDDDDDD", imageName: "Avatar-3"),
-                                       User(order: 3, name: "FFFFFFF", imageName: "Avatar-2"),
-                                       User(order: 5, name: "WWWWWWW", imageName: "Avatar-1")]
+    static var items: Array<CardItem> = [CardItem(order: 3, text: "If you're going to use 'Lorem Ipsum', you need to be sure there isn't anything embarrassing.", imageName: "Avatar-4"),
+                                         CardItem(order: 2, text: "There are many variations of passages of Lorem Ipsum available.", imageName: "Avatar-3"),
+                                         CardItem(order: 1, text: "Many desktop publishing packages and web page editors now use Lorem Ipsum.", imageName: "Avatar-2"),
+                                         CardItem(order: 0, text: "It is a long established fact that a reader will be distracted by the readable content.", imageName: "Avatar-1")]
 }
 
 struct ContentView: View {
     
-    @State var translation: CGSize = .zero
+    @State var isLoading: Bool = false
+    @State var isMovingCard: Bool = false
+    @State var items: Array<CardItem> = Contants.items
     
-    @State var items: Array<User> = Contants.page_01
-    @State var dismissCard: Bool = false
-    @State var cardState: SwipeAction = .none
-
     var body: some View {
         
-        VStack {
+        ZStack {
 
-            GeometryReader { geometry in
+            Color(UIColor(red:0.10, green:0.18, blue:0.27, alpha:1.0))
+                .opacity(0.3)
+                .edgesIgnoringSafeArea(.all)
+            
+            Text("Loading more...")
+                .foregroundColor(Color(UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)))
+                .opacity(isLoading ? 1 : 0)
+                .scaleEffect(isLoading ? 1 : 0.3)
+                .animation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0))
+            
+            VStack {
                 
-                ForEach(self.items) { item in
-                    
-                    CardView(user: item, onRemove: { user in
-                        
-                        self.items.removeAll { $0.id == user.id }
-                        
-                        if self.items.count == 0 {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                self.items = Contants.page_02
-                            }
+                //-------------------------------------
+                //  Cards
+                //-------------------------------------
+                
+                GeometryReader { geometry in
+
+                    ForEach(self.items) { item in
+
+                        CardView(item: item, isMoving: self.$isMovingCard) { object in
+
+                            self.items.removeAll { $0.id == object.id }
+
+                            self.handlePagination()
                         }
-                    })
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
-                    .rotationEffect(Angle(degrees: Double.random(in: -5...5)))
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
+                        .rotationEffect(Angle(degrees: Double.random(in: -5...5)))
+                    }
                 }
+                .animation(.spring())
+                
+                Spacer()
+                
+                //-------------------------------------
+                //  Actions
+                //-------------------------------------
+                
+                HStack (spacing: 25) {
+                    
+                    OptionButton(imageName: "Option-Dislike",
+                                 overlayColor: Color.red,
+                                 gradient: Gradient(colors: [Color.pink, Color.red])) {
+                                    // TO DO - Dislike
+                                    self.items.removeLast()
+                                    self.handlePagination()
+                    }
+                    .disabled(isMovingCard)
+                    
+                    OptionButton(imageName: "Option-Superlike",
+                                 overlayColor: Color.blue,
+                                 gradient: Gradient(colors: [Color.blue, Color.purple])) {
+                                    // TO DO - Superlike
+                                    self.items.removeLast()
+                                    self.handlePagination()
+                    }
+                    .disabled(isMovingCard)
+                    
+                    OptionButton(imageName: "Option-Like",
+                                 overlayColor: Color.yellow,
+                                 gradient: Gradient(colors: [Color.green, Color.yellow])) {
+                                    // TO DO - Like
+                                    self.items.removeLast()
+                                    self.handlePagination()
+                    }
+                    .disabled(isMovingCard)
+                }
+                .opacity(isMovingCard ? 0.3 : 1)
+                .animation(.easeInOut(duration: 0.3))
             }
-            .animation(.spring())
+        }
+    }
+    
+    func handlePagination() {
+
+        if self.items.count == 0 {
             
-            Spacer()
+            self.isLoading = true
+            self.isMovingCard = true
             
-            HStack (spacing: 50) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+                self.isLoading = false
+                self.isMovingCard = false
                 
-                Button("Dislike") {
-                    
-                }
-                
-                Button("Superlike") {
-                    
-                }
-                
-                Button("Like") {
-                    
-                }
+                self.items = Contants.items // pagination
             }
-            .opacity((translation == .zero) ? 1 : 0)
         }
     }
 }
