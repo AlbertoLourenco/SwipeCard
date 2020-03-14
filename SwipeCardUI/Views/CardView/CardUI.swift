@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CardUI: UIViewRepresentable {
     
-    var item: CardItem!
+    var item: Animal!
     var action: SwipeAction = .none
     
     func makeUIView(context: UIViewRepresentableContext<Self>) -> Card {
@@ -27,6 +27,6 @@ struct CardUI: UIViewRepresentable {
 
 struct CardUI_Previews: PreviewProvider {
     static var previews: some View {
-        CardUI(item: CardItem(order: 0, text: "", imageName: "Avatar-1"), action: .like)
+        CardUI(item: MockedData.animals().first!, action: .like)
     }
 }

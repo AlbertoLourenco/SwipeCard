@@ -8,10 +8,13 @@
 
 import Foundation
 
-struct CardItem: Identifiable {
+struct Animal: Identifiable {
     
     var id = UUID()
     var order: Int
-    var text: String
+    var name: String
+    var description: String
     var imageName: String
+    
+    var category: Category
 }

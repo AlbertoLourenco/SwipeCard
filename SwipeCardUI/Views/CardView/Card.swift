@@ -11,6 +11,7 @@ import UIKit
 class Card: UIView {
     
     @IBOutlet private weak var lblTitle: UILabel!
+    @IBOutlet private weak var lblDescription: UILabel!
     @IBOutlet private weak var vwActionMask: UIView!
     @IBOutlet private weak var imgAvatar: UIImageView!
     
@@ -22,7 +23,7 @@ class Card: UIView {
         return nib.instantiate(withOwner: self, options: nil).first as! Card
     }
     
-    func configUI(item: CardItem) {
+    func configUI(item: Animal) {
         
         //  Card
         
@@ -42,8 +43,11 @@ class Card: UIView {
         
         //  Title
         
-        self.lblTitle.textColor = .white
-        self.lblTitle.text = item.text
+        self.lblTitle.text = item.name
+        
+        //  Description
+        
+        self.lblDescription.text = item.description
         
         //  Emitter
         

@@ -8,21 +8,13 @@
 
 import SwiftUI
 
-struct Constants {
-
-    static var items: Array<CardItem> = [CardItem(order: 3, text: "If you're going to use 'Lorem Ipsum', you need to be sure there isn't anything embarrassing.", imageName: "Avatar-4"),
-                                         CardItem(order: 2, text: "There are many variations of passages of Lorem Ipsum available.", imageName: "Avatar-3"),
-                                         CardItem(order: 1, text: "Many desktop publishing packages and web page editors now use Lorem Ipsum.", imageName: "Avatar-2"),
-                                         CardItem(order: 0, text: "It is a long established fact that a reader will be distracted by the readable content.", imageName: "Avatar-1")]
-}
-
 struct ContentView: View {
     
     @State var showingIndex: Int = -1
     @State var isShowing: Bool = false
     @State var isLoading: Bool = false
     @State var isMovingCard: Bool = false
-    @State var items: Array<CardItem> = Constants.items
+    @State var items: Array<Animal> = MockedData.animals()
     
     var body: some View {
         
@@ -120,7 +112,7 @@ struct ContentView: View {
                 self.isLoading = false
                 self.isMovingCard = false
                 
-                self.items = Constants.items // pagination
+                self.items = MockedData.animals() // pagination
             }
         }
     }
