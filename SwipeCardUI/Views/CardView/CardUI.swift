@@ -16,14 +16,12 @@ struct CardUI: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<Self>) -> Card {
         
         let vwCard = Card().loadNib()
-        vwCard.configUI(frame: UIScreen.main.bounds, item: item)
-
+        vwCard.configUI(item: item)
         return vwCard
     }
     
-    func updateUIView(_ uiView: Card, context: UIViewRepresentableContext<Self>) {
-        
-        uiView.updateEmitters(action: action)
+    func updateUIView(_ view: Card, context: UIViewRepresentableContext<Self>) {
+        view.updateEmitters(action: action)
     }
 }
 

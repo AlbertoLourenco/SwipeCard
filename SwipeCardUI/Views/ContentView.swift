@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Contants {
+struct Constants {
 
     static var items: Array<CardItem> = [CardItem(order: 3, text: "If you're going to use 'Lorem Ipsum', you need to be sure there isn't anything embarrassing.", imageName: "Avatar-4"),
                                          CardItem(order: 2, text: "There are many variations of passages of Lorem Ipsum available.", imageName: "Avatar-3"),
@@ -18,9 +18,11 @@ struct Contants {
 
 struct ContentView: View {
     
+    @State var showingIndex: Int = -1
+    @State var isShowing: Bool = false
     @State var isLoading: Bool = false
     @State var isMovingCard: Bool = false
-    @State var items: Array<CardItem> = Contants.items
+    @State var items: Array<CardItem> = Constants.items
     
     var body: some View {
         
@@ -41,19 +43,20 @@ struct ContentView: View {
                 //-------------------------------------
                 //  Cards
                 //-------------------------------------
-                
+
                 GeometryReader { geometry in
 
                     ForEach(self.items) { item in
-
-                        CardView(item: item, isMoving: self.$isMovingCard) { object in
+                        
+                        CardView(item: item, isMoving: self.$isMovingCard, showingIndex: self.$showingIndex) { object in
 
                             self.items.removeAll { $0.id == object.id }
 
                             self.handlePagination()
                         }
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 150)
-                        .rotationEffect(Angle(degrees: Double.random(in: -5...5)))
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                        .rotationEffect(Angle(degrees: (self.showingIndex == item.order) ? 0 : Double.random(in: -5...5)))
+                        .edgesIgnoringSafeArea(.all)
                     }
                 }
                 .animation(.spring())
@@ -74,6 +77,8 @@ struct ContentView: View {
                                     self.handlePagination()
                     }
                     .disabled(isMovingCard)
+                    .opacity(isMovingCard ? 0.3 : 1)
+                    .animation(.easeInOut(duration: 0.3))
                     
                     OptionButton(imageName: "Option-Superlike",
                                  overlayColor: Color.blue,
@@ -83,6 +88,8 @@ struct ContentView: View {
                                     self.handlePagination()
                     }
                     .disabled(isMovingCard)
+                    .opacity(isMovingCard ? 0.3 : 1)
+                    .animation(.easeInOut(duration: 0.3))
                     
                     OptionButton(imageName: "Option-Like",
                                  overlayColor: Color.yellow,
@@ -92,8 +99,10 @@ struct ContentView: View {
                                     self.handlePagination()
                     }
                     .disabled(isMovingCard)
+                    .opacity(isMovingCard ? 0.3 : 1)
+                    .animation(.easeInOut(duration: 0.3))
                 }
-                .opacity(isMovingCard ? 0.3 : 1)
+                .opacity(showingIndex != -1 ? 0 : 1)
                 .animation(.easeInOut(duration: 0.3))
             }
         }
@@ -111,7 +120,7 @@ struct ContentView: View {
                 self.isLoading = false
                 self.isMovingCard = false
                 
-                self.items = Contants.items // pagination
+                self.items = Constants.items // pagination
             }
         }
     }

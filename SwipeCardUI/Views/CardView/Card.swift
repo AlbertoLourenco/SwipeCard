@@ -14,7 +14,6 @@ class Card: UIView {
     @IBOutlet private weak var vwActionMask: UIView!
     @IBOutlet private weak var imgAvatar: UIImageView!
     
-    private let layerMask = CAGradientLayer()
     private let emitterLayer = CAEmitterLayer()
     
     func loadNib() -> Card {
@@ -23,11 +22,7 @@ class Card: UIView {
         return nib.instantiate(withOwner: self, options: nil).first as! Card
     }
     
-    override func layoutSubviews() {
-        layerMask.frame = frame
-    }
-    
-    func configUI(frame: CGRect, item: CardItem) {
+    func configUI(item: CardItem) {
         
         //  Card
         
@@ -49,19 +44,6 @@ class Card: UIView {
         
         self.lblTitle.textColor = .white
         self.lblTitle.text = item.text
-        
-        //  Mask - gradient
-        
-        self.layerMask.opacity = 1
-        self.layerMask.frame = imgAvatar.frame
-        self.layerMask.backgroundColor = UIColor.clear.cgColor
-        self.layerMask.colors = [UIColor.black.withAlphaComponent(0.8).cgColor,
-                                 UIColor.clear.cgColor,
-                                 UIColor.clear.cgColor]
-        self.layerMask.startPoint = CGPoint(x: 0, y: 1)
-        self.layerMask.endPoint = CGPoint(x: 0, y: 0)
-        
-        self.layer.insertSublayer(layerMask, below: lblTitle.layer)
         
         //  Emitter
         
