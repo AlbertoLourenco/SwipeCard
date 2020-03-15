@@ -58,6 +58,7 @@
 		16634E0A241D5C89002C8220 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				1645D27B241B248500470210 /* OptionButton.swift */,
 				16634E0B241D5CA2002C8220 /* VisualEffectView.swift */,
 			);
 			path = UIComponents;
@@ -89,7 +90,6 @@
 				16634E0A241D5C89002C8220 /* UIComponents */,
 				16C8AF2F241A7FED00B62E35 /* CardView */,
 				16FB7E412419ECBA00064343 /* ContentView.swift */,
-				1645D27B241B248500470210 /* OptionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

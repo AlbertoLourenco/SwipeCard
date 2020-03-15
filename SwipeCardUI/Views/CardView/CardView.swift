@@ -32,7 +32,7 @@ struct CardView: View {
         
         ZStack {
 
-            CardUI(item: item, action: action)
+            CardUI(item: item, action: action, showing: isShowing)
                 .frame(width: isShowing ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - 60,
                        height: isShowing ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 400)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -43,12 +43,72 @@ struct CardView: View {
 
                 Spacer()
                 
-                HStack {
-                    Text(self.item.description)
-                        .padding(20)
+                VStack (alignment: .leading, spacing: 20) {
+                    
+                    HStack {
+                        
+                        Image(item.category.imageName)
+                            .resizable()
+                            .renderingMode(Image.TemplateRenderingMode.template)
+                            .foregroundColor(Color.white)
+                            .padding(5)
+                            .frame(width: 35, height: 35)
+                            .background(item.category.color)
+                            .clipShape(Circle())
+                        
+                        Text(item.name)
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color.white)
+                    }
+                    
+                    Text(item.description)
+                        .font(.body)
+                        .fontWeight(.regular)
+                        .foregroundColor(Color.white)
+                    
+                    //-------------------------------------
+                    //  Actions
+                    //-------------------------------------
+                    
+                    VStack (alignment: .center) {
+
+                        HStack (spacing: 25) {
+                            
+                            OptionButton(imageName: "Option-Dislike",
+                                         overlayColor: Color.red,
+                                         gradient: Gradient(colors: [Color.pink, Color.red])) {
+                                            
+                                            // TO DO - Dislike
+                                            
+                                            self.isShowing = false
+                            }
+                            
+                            OptionButton(imageName: "Option-Superlike",
+                                         overlayColor: Color.blue,
+                                         gradient: Gradient(colors: [Color.blue, Color.purple])) {
+                                            
+                                            // TO DO - Superlike
+                                            
+                                            self.isShowing = false
+                            }
+                            
+                            OptionButton(imageName: "Option-Like",
+                                         overlayColor: Color.yellow,
+                                         gradient: Gradient(colors: [Color.green, Color.yellow])) {
+                                            
+                                            // TO DO - Like
+                                            
+                                            self.isShowing = false
+                            }
+                        }
+                        .scaleEffect(0.75)
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 30)
                 }
-                .frame(height: 200)
-                .background(VisualEffectView(effect: UIBlurEffect(style: .regular)).background(Color(UIColor(red:0.23, green:0.20, blue:0.61, alpha:1.0)).opacity(0.1)))
+                .padding(20)
+                .frame(width: UIScreen.main.bounds.width)
+                .background(Color(UIColor(red:0.07, green:0.16, blue:0.21, alpha:1.0)))
                 .offset(y: isShowing ? 0 : 200)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .shadow(radius: 5)

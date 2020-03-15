@@ -29,7 +29,7 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WS2-s0-4ah">
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WS2-s0-4ah">
                     <rect key="frame" x="20" y="673.33333333333337" width="374" height="1"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -70,9 +70,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="imgAvatar" destination="5sY-cl-d9j" id="GQ7-Jw-Eai"/>
+                <outlet property="imgShadow" destination="lcN-Gs-W8q" id="lFr-xk-vvr"/>
                 <outlet property="lblDescription" destination="PKu-Q0-WTj" id="aNM-d8-moW"/>
                 <outlet property="lblTitle" destination="JCX-tl-3cl" id="ELA-C2-8Xm"/>
                 <outlet property="vwActionMask" destination="EEV-kw-iQd" id="oQN-NP-s5e"/>
+                <outlet property="vwLine" destination="WS2-s0-4ah" id="Ain-Do-wNm"/>
             </connections>
             <point key="canvasLocation" x="-171.01449275362319" y="6.5217391304347831"/>
         </view>

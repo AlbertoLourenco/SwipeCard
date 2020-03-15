@@ -10,6 +10,8 @@ import UIKit
 
 class Card: UIView {
     
+    @IBOutlet private weak var vwLine: UIView!
+    @IBOutlet private weak var imgShadow: UIImageView!
     @IBOutlet private weak var lblTitle: UILabel!
     @IBOutlet private weak var lblDescription: UILabel!
     @IBOutlet private weak var vwActionMask: UIView!
@@ -58,6 +60,27 @@ class Card: UIView {
         self.emitterLayer.timeOffset = 1
         
         self.layer.insertSublayer(emitterLayer, below: lblTitle.layer)
+    }
+    
+    func updateShowing(_ showing: Bool) {
+        
+        if showing {
+            
+            UIView.animate(withDuration: 0.3) {
+                self.vwLine.alpha = 0
+                self.lblTitle.alpha = 0
+                self.lblDescription.alpha = 0
+                self.imgShadow.alpha = 0
+            }
+        }else{
+            
+            UIView.animate(withDuration: 0.3) {
+                self.vwLine.alpha = 0.5
+                self.lblTitle.alpha = 1
+                self.lblDescription.alpha = 1
+                self.imgShadow.alpha = 1
+            }
+        }
     }
     
     func updateEmitters(action: SwipeAction) {

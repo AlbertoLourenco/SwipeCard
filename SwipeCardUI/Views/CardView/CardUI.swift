@@ -12,6 +12,7 @@ struct CardUI: UIViewRepresentable {
     
     var item: Animal!
     var action: SwipeAction = .none
+    var showing: Bool = false
     
     func makeUIView(context: UIViewRepresentableContext<Self>) -> Card {
         
@@ -21,6 +22,8 @@ struct CardUI: UIViewRepresentable {
     }
     
     func updateUIView(_ view: Card, context: UIViewRepresentableContext<Self>) {
+        
+        view.updateShowing(showing)
         view.updateEmitters(action: action)
     }
 }
