@@ -210,11 +210,30 @@ struct CardView: View {
     
     private func dismissWithAction() {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        self.dismissDetail()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+
+            switch self.action {
+                
+                case .none:
+                    self.dragState = .zero
+                    break
+                    
+                case .like:
+                    self.dragState = CGSize(width: 50, height: 0)
+                    break
+                    
+                case .dislike:
+                    self.dragState = CGSize(width: -50, height: 0)
+                    break
+                    
+                case .superlike:
+                    self.dragState = CGSize(width: 0, height: -120)
+                    break
+            }
             
-            self.dismissDetail()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 
                 self.onRemove(self.item) // remove item from array
             }
