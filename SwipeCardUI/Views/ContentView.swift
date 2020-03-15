@@ -121,6 +121,7 @@ struct ContentView: View {
                 }
             }
             .animation(.spring())
+            .offset(y: -75)
         }
     }
     

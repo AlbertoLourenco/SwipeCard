@@ -32,12 +32,43 @@ struct CardView: View {
         
         ZStack {
 
-            CardUI(item: item, action: action, showing: isShowing)
-                .frame(width: isShowing ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - 60,
-                       height: isShowing ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 400)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .shadow(radius: 5)
-                .animation(.easeInOut)
+            ZStack {
+                
+                Image(item.imageName)
+                    .resizable()
+                    .scaledToFill()
+
+                Image("Card-Picture-Shadow")
+                    .resizable()
+                    .opacity(isShowing ? 0 : 0.7)
+                    .animation(.linear)
+
+                ParticleEmitterView(action: action)
+                    .opacity(action != .none ? 1 : 0)
+                    .animation(.easeInOut)
+                
+                VStack (alignment: .leading, spacing: 5) {
+                    
+                    Spacer()
+                    
+                    Text(item.name)
+                        .font(.largeTitle)
+                        .foregroundColor(Color.white)
+                    
+                    Divider()
+                    
+                    Text(item.description)
+                        .foregroundColor(Color.white)
+                }
+                .padding(20)
+                .frame(width: UIScreen.main.bounds.width - 60)
+                .opacity(isShowing ? 0 : 1)
+            }
+            .frame(width: isShowing ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - 60,
+                   height: isShowing ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 325)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(radius: 5)
+            .animation(.easeInOut)
             
             VStack {
 
