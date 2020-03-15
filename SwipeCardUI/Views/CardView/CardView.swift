@@ -81,7 +81,8 @@ struct CardView: View {
                                             
                                             // TO DO - Dislike
                                             
-                                            self.isShowing = false
+                                            self.action = .dislike
+                                            self.dismissWithAction()
                             }
                             
                             OptionButton(imageName: "Option-Superlike",
@@ -90,7 +91,8 @@ struct CardView: View {
                                             
                                             // TO DO - Superlike
                                             
-                                            self.isShowing = false
+                                            self.action = .superlike
+                                            self.dismissWithAction()
                             }
                             
                             OptionButton(imageName: "Option-Like",
@@ -99,7 +101,8 @@ struct CardView: View {
                                             
                                             // TO DO - Like
                                             
-                                            self.isShowing = false
+                                            self.action = .like
+                                            self.dismissWithAction()
                             }
                         }
                         .scaleEffect(0.75)
@@ -139,10 +142,7 @@ struct CardView: View {
                                         }
                                         
                                         if self.dragState.height > 100 {
-
-                                            self.dragState = .zero
-                                            self.showingIndex = -1
-                                            self.isShowing = false
+                                            self.dismissDetail()
                                         }
                                       }
                                       .onEnded{ value in
@@ -180,7 +180,8 @@ struct CardView: View {
                                        self.isMoving = false
                                        
                                        if self.action != .none {
-                                           self.onRemove(self.item)
+                                        
+                                           self.onRemove(self.item) // remove item from array
                                            
                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                                self.action = .none
@@ -194,9 +195,29 @@ struct CardView: View {
         )
         .onTapGesture {
             
+            self.action = .none
             self.isShowing = true
-            
             self.showingIndex = self.item.order
+        }
+    }
+    
+    private func dismissDetail() {
+
+        self.dragState = .zero
+        self.showingIndex = -1
+        self.isShowing = false
+    }
+    
+    private func dismissWithAction() {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            
+            self.dismissDetail()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                
+                self.onRemove(self.item) // remove item from array
+            }
         }
     }
 }

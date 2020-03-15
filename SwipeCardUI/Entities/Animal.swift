@@ -18,3 +18,9 @@ struct Animal: Identifiable {
     
     var category: Category
 }
+
+extension Animal: Equatable {
+    static public func ==(first: Animal, second: Animal) -> Bool {
+        return first.id == second.id
+    }
+}

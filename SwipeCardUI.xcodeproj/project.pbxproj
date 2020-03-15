@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161D0D71241DB9EC006E41B2 /* ParticleEmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161D0D70241DB9EC006E41B2 /* ParticleEmitterView.swift */; };
 		1645D27C241B248500470210 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1645D27B241B248500470210 /* OptionButton.swift */; };
-		16634E0C241D5CA2002C8220 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16634E0B241D5CA2002C8220 /* VisualEffectView.swift */; };
 		16634E0E241D5DBE002C8220 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16634E0D241D5DBE002C8220 /* Category.swift */; };
 		16634E11241D5DF4002C8220 /* MokedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16634E10241D5DF4002C8220 /* MokedData.swift */; };
 		16C8AF25241A63A100B62E35 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF24241A63A100B62E35 /* Card.swift */; };
@@ -25,8 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		161D0D70241DB9EC006E41B2 /* ParticleEmitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEmitterView.swift; sourceTree = "<group>"; };
 		1645D27B241B248500470210 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
-		16634E0B241D5CA2002C8220 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		16634E0D241D5DBE002C8220 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		16634E10241D5DF4002C8220 /* MokedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokedData.swift; sourceTree = "<group>"; };
 		16C8AF24241A63A100B62E35 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				1645D27B241B248500470210 /* OptionButton.swift */,
-				16634E0B241D5CA2002C8220 /* VisualEffectView.swift */,
+				161D0D70241DB9EC006E41B2 /* ParticleEmitterView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -226,10 +226,10 @@
 				16634E0E241D5DBE002C8220 /* Category.swift in Sources */,
 				16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */,
 				16634E11241D5DF4002C8220 /* MokedData.swift in Sources */,
-				16634E0C241D5CA2002C8220 /* VisualEffectView.swift in Sources */,
 				1645D27C241B248500470210 /* OptionButton.swift in Sources */,
 				16FB7E402419ECBA00064343 /* SceneDelegate.swift in Sources */,
 				16C8AF29241A64A000B62E35 /* Animal.swift in Sources */,
+				161D0D71241DB9EC006E41B2 /* ParticleEmitterView.swift in Sources */,
 				16C8AF25241A63A100B62E35 /* Card.swift in Sources */,
 				16FB7E522419F73C00064343 /* CardUI.swift in Sources */,
 				16FB7E422419ECBA00064343 /* ContentView.swift in Sources */,

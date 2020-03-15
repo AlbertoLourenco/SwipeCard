@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var socialAction: SwipeAction = .none
+    
     @State var showingIndex: Int = -1
     @State var isShowing: Bool = false
     @State var isLoading: Bool = false
@@ -30,43 +32,32 @@ struct ContentView: View {
                 .scaleEffect(isLoading ? 1 : 0.3)
                 .animation(.spring(response: 0.4, dampingFraction: 0.6, blendDuration: 0))
             
+            ParticleEmitterView(action: socialAction)
+                .opacity(socialAction != .none ? 1 : 0)
+                .animation(.easeInOut)
+            
+            //-------------------------------------
+            //  Actions
+            //-------------------------------------
+            
             VStack {
                 
-                //-------------------------------------
-                //  Cards
-                //-------------------------------------
-
-                GeometryReader { geometry in
-
-                    ForEach(self.items) { item in
-                        
-                        CardView(item: item, isMoving: self.$isMovingCard, showingIndex: self.$showingIndex) { object in
-
-                            self.items.removeAll { $0.id == object.id }
-
-                            self.handlePagination()
-                        }
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                        .rotationEffect(Angle(degrees: (self.showingIndex == item.order) ? 0 : Double.random(in: -5...5)))
-                        .edgesIgnoringSafeArea(.all)
-                    }
-                }
-                .animation(.spring())
-                
                 Spacer()
-                
-                //-------------------------------------
-                //  Actions
-                //-------------------------------------
                 
                 HStack (spacing: 25) {
                     
                     OptionButton(imageName: "Option-Dislike",
                                  overlayColor: Color.red,
                                  gradient: Gradient(colors: [Color.pink, Color.red])) {
+                                    
                                     // TO DO - Dislike
-                                    self.items.removeLast()
-                                    self.handlePagination()
+                                    
+                                    self.socialAction = .dislike
+
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        self.items.removeLast()
+                                        self.handlePagination()
+                                    }
                     }
                     .disabled(isMovingCard)
                     .opacity(isMovingCard ? 0.3 : 1)
@@ -75,9 +66,15 @@ struct ContentView: View {
                     OptionButton(imageName: "Option-Superlike",
                                  overlayColor: Color.blue,
                                  gradient: Gradient(colors: [Color.blue, Color.purple])) {
+                                    
                                     // TO DO - Superlike
-                                    self.items.removeLast()
-                                    self.handlePagination()
+                                    
+                                    self.socialAction = .superlike
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        self.items.removeLast()
+                                        self.handlePagination()
+                                    }
                     }
                     .disabled(isMovingCard)
                     .opacity(isMovingCard ? 0.3 : 1)
@@ -86,9 +83,15 @@ struct ContentView: View {
                     OptionButton(imageName: "Option-Like",
                                  overlayColor: Color.yellow,
                                  gradient: Gradient(colors: [Color.green, Color.yellow])) {
+                                    
                                     // TO DO - Like
-                                    self.items.removeLast()
-                                    self.handlePagination()
+                                    
+                                    self.socialAction = .like
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        self.items.removeLast()
+                                        self.handlePagination()
+                                    }
                     }
                     .disabled(isMovingCard)
                     .opacity(isMovingCard ? 0.3 : 1)
@@ -97,6 +100,27 @@ struct ContentView: View {
                 .opacity(showingIndex != -1 ? 0 : 1)
                 .animation(.easeInOut(duration: 0.3))
             }
+            
+            //-------------------------------------
+            //  Cards
+            //-------------------------------------
+
+            GeometryReader { geometry in
+
+                ForEach(self.items) { item in
+                    
+                    CardView(item: item, isMoving: self.$isMovingCard, showingIndex: self.$showingIndex) { object in
+
+                        self.items.removeAll { $0.id == object.id }
+
+                        self.handlePagination()
+                    }
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    .rotationEffect(Angle(degrees: (self.showingIndex == item.order) ? 0 : Double.random(in: -5...5)))
+                    .edgesIgnoringSafeArea(.all)
+                }
+            }
+            .animation(.spring())
         }
     }
     
@@ -106,6 +130,7 @@ struct ContentView: View {
             
             self.isLoading = true
             self.isMovingCard = true
+            self.socialAction = .none
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
@@ -114,6 +139,8 @@ struct ContentView: View {
                 
                 self.items = MockedData.animals() // pagination
             }
+        }else{
+            self.socialAction = .none
         }
     }
 }
