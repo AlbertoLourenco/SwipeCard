@@ -22,7 +22,9 @@ struct CardView: View {
     @Binding var isMoving: Bool
     @Binding var showingIndex: Int
     
+    @State var pageIndex: Int = 0
     @State var isShowing: Bool = false
+    @State var fullScreenGallery: Bool = false
     @State var dragState: CGSize = .zero
     @State var action: SwipeAction = .none
     
@@ -34,28 +36,44 @@ struct CardView: View {
 
             ZStack {
                 
-                Image(item.imageName)
-                    .resizable()
-                    .scaledToFill()
-
-                Image("Card-Picture-Shadow")
-                    .resizable()
-                    .opacity(isShowing ? 0 : 0.7)
-                    .animation(.linear)
+                Color(UIColor(red:0.14, green:0.15, blue:0.16, alpha:1.0))
+                    .edgesIgnoringSafeArea(.all)
+                
+                GalleryView(size: UIScreen.main.bounds.size,
+                            items: item.gallery,
+                            scrollEnabled: isShowing,
+                            fullScreen: fullScreenGallery,
+                            pageIndex: $pageIndex)
+                    .frame(width: isShowing ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - 60,
+                           height: isShowing ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 325)
 
                 ParticleEmitterView(action: action)
                     .opacity(action != .none ? 1 : 0)
                     .animation(.easeInOut)
                 
-                VStack (alignment: .leading, spacing: 5) {
+                VStack (alignment: .leading, spacing: 10) {
                     
                     Spacer()
-                    
-                    Text(item.name)
-                        .font(.largeTitle)
-                        .foregroundColor(Color.white)
+
+                    HStack {
+
+                        Image(item.category.imageName)
+                            .resizable()
+                            .renderingMode(Image.TemplateRenderingMode.template)
+                            .foregroundColor(Color.white)
+                            .padding(5)
+                            .frame(width: 35, height: 35)
+                            .background(item.category.color)
+                            .clipShape(Circle())
+                        
+                        Text(item.name)
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color.white)
+                    }
                     
                     Divider()
+                        .background(Color.white)
                     
                     Text(item.description)
                         .foregroundColor(Color.white)
@@ -73,6 +91,11 @@ struct CardView: View {
             VStack {
 
                 Spacer()
+                
+                PageControl(page: pageIndex, total: item.gallery.count)
+                    .opacity(isShowing ? 1 : 0)
+                    .offset(y: fullScreenGallery ? 200 : 0)
+                    .animation(.spring())
                 
                 VStack (alignment: .leading, spacing: 20) {
                     
@@ -106,7 +129,7 @@ struct CardView: View {
 
                         HStack (spacing: 25) {
                             
-                            OptionButton(imageName: "Option-Dislike",
+                            ActionButton(imageName: "Action-Dislike",
                                          overlayColor: Color.red,
                                          gradient: Gradient(colors: [Color.pink, Color.red])) {
                                             
@@ -116,7 +139,7 @@ struct CardView: View {
                                             self.dismissWithAction()
                             }
                             
-                            OptionButton(imageName: "Option-Superlike",
+                            ActionButton(imageName: "Action-Superlike",
                                          overlayColor: Color.blue,
                                          gradient: Gradient(colors: [Color.blue, Color.purple])) {
                                             
@@ -126,7 +149,7 @@ struct CardView: View {
                                             self.dismissWithAction()
                             }
                             
-                            OptionButton(imageName: "Option-Like",
+                            ActionButton(imageName: "Action-Like",
                                          overlayColor: Color.yellow,
                                          gradient: Gradient(colors: [Color.green, Color.yellow])) {
                                             
@@ -143,7 +166,8 @@ struct CardView: View {
                 .padding(20)
                 .frame(width: UIScreen.main.bounds.width)
                 .background(Color(UIColor(red:0.07, green:0.16, blue:0.21, alpha:1.0)))
-                .offset(y: isShowing ? 0 : 200)
+                .offset(y: isShowing ? 0 : 300)
+                .offset(y: fullScreenGallery ? 300 : 0)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .shadow(radius: 5)
                 .opacity(isShowing ? 1 : 0)
@@ -172,13 +196,13 @@ struct CardView: View {
                                             self.dragState = .zero
                                         }
                                         
-                                        if self.dragState.height > 100 {
+                                        if self.dragState.height > 50 {
                                             self.dismissDetail()
                                         }
                                       }
                                       .onEnded{ value in
                                         
-                                        if self.dragState.height < 100 {
+                                        if self.dragState.height < 50 {
                                             self.dragState = .zero
                                         }
                                       }
@@ -226,9 +250,14 @@ struct CardView: View {
         )
         .onTapGesture {
             
-            self.action = .none
-            self.isShowing = true
-            self.showingIndex = self.item.order
+            if self.isShowing == false {
+
+                self.action = .none
+                self.isShowing = true
+                self.showingIndex = self.item.order
+            }else{
+                self.fullScreenGallery.toggle()
+            }
         }
     }
     
@@ -236,6 +265,7 @@ struct CardView: View {
 
         self.dragState = .zero
         self.showingIndex = -1
+        self.fullScreenGallery = false
         self.isShowing = false
     }
     
@@ -277,6 +307,6 @@ struct CardView_Previews: PreviewProvider {
         CardView(item: MockedData.animals().first!,
                  isMoving: .constant(false),
                  showingIndex: .constant(0),
-                 isShowing: true) { user in }
+                 isShowing: false) { user in }
     }
 }

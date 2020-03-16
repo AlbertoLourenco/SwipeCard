@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		161D0D71241DB9EC006E41B2 /* ParticleEmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161D0D70241DB9EC006E41B2 /* ParticleEmitterView.swift */; };
-		1645D27C241B248500470210 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1645D27B241B248500470210 /* OptionButton.swift */; };
+		1645D27C241B248500470210 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1645D27B241B248500470210 /* ActionButton.swift */; };
 		16634E0E241D5DBE002C8220 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16634E0D241D5DBE002C8220 /* Category.swift */; };
 		16634E11241D5DF4002C8220 /* MokedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16634E10241D5DF4002C8220 /* MokedData.swift */; };
+		1663AC1E241FD28000DFE624 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1663AC1D241FD28000DFE624 /* PageControl.swift */; };
+		1663AC26241FDF9900DFE624 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1663AC25241FDF9900DFE624 /* GalleryView.swift */; };
 		16C8AF29241A64A000B62E35 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF28241A64A000B62E35 /* Animal.swift */; };
 		16C8AF2B241A7E3200B62E35 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C8AF2A241A7E3200B62E35 /* CardView.swift */; };
 		16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FB7E3D2419ECBA00064343 /* AppDelegate.swift */; };
@@ -23,9 +25,11 @@
 
 /* Begin PBXFileReference section */
 		161D0D70241DB9EC006E41B2 /* ParticleEmitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleEmitterView.swift; sourceTree = "<group>"; };
-		1645D27B241B248500470210 /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
+		1645D27B241B248500470210 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		16634E0D241D5DBE002C8220 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		16634E10241D5DF4002C8220 /* MokedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokedData.swift; sourceTree = "<group>"; };
+		1663AC1D241FD28000DFE624 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		1663AC25241FDF9900DFE624 /* GalleryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		16C8AF28241A64A000B62E35 /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		16C8AF2A241A7E3200B62E35 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		16FB7E3A2419ECBA00064343 /* SwipeCardUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeCardUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +56,9 @@
 		16634E0A241D5C89002C8220 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				1645D27B241B248500470210 /* OptionButton.swift */,
+				1663AC25241FDF9900DFE624 /* GalleryView.swift */,
+				1663AC1D241FD28000DFE624 /* PageControl.swift */,
+				1645D27B241B248500470210 /* ActionButton.swift */,
 				161D0D70241DB9EC006E41B2 /* ParticleEmitterView.swift */,
 			);
 			path = UIComponents;
@@ -116,8 +122,8 @@
 		16FB7E3C2419ECBA00064343 /* SwipeCardUI */ = {
 			isa = PBXGroup;
 			children = (
-				16634E0F241D5DDD002C8220 /* Classes */,
 				16C8AF2C241A7FA500B62E35 /* Application */,
+				16634E0F241D5DDD002C8220 /* Classes */,
 				16C8AF2E241A7FDD00B62E35 /* Entities */,
 				16C8AF2D241A7FD700B62E35 /* Views */,
 				16FB7E452419ECBB00064343 /* Preview Content */,
@@ -149,6 +155,8 @@
 			dependencies = (
 			);
 			name = SwipeCardUI;
+			packageProductDependencies = (
+			);
 			productName = SwipeCardUI;
 			productReference = 16FB7E3A2419ECBA00064343 /* SwipeCardUI.app */;
 			productType = "com.apple.product-type.application";
@@ -177,6 +185,8 @@
 				Base,
 			);
 			mainGroup = 16FB7E312419ECBA00064343;
+			packageReferences = (
+			);
 			productRefGroup = 16FB7E3B2419ECBA00064343 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -204,12 +214,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1663AC1E241FD28000DFE624 /* PageControl.swift in Sources */,
 				16C8AF2B241A7E3200B62E35 /* CardView.swift in Sources */,
 				16634E0E241D5DBE002C8220 /* Category.swift in Sources */,
 				16FB7E3E2419ECBA00064343 /* AppDelegate.swift in Sources */,
 				16634E11241D5DF4002C8220 /* MokedData.swift in Sources */,
-				1645D27C241B248500470210 /* OptionButton.swift in Sources */,
+				1645D27C241B248500470210 /* ActionButton.swift in Sources */,
 				16FB7E402419ECBA00064343 /* SceneDelegate.swift in Sources */,
+				1663AC26241FDF9900DFE624 /* GalleryView.swift in Sources */,
 				16C8AF29241A64A000B62E35 /* Animal.swift in Sources */,
 				161D0D71241DB9EC006E41B2 /* ParticleEmitterView.swift in Sources */,
 				16FB7E422419ECBA00064343 /* ContentView.swift in Sources */,

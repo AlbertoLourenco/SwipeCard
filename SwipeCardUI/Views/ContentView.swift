@@ -46,7 +46,7 @@ struct ContentView: View {
                 
                 HStack (spacing: 25) {
                     
-                    OptionButton(imageName: "Option-Dislike",
+                    ActionButton(imageName: "Action-Dislike",
                                  overlayColor: Color.red,
                                  gradient: Gradient(colors: [Color.pink, Color.red])) {
                                     
@@ -63,7 +63,7 @@ struct ContentView: View {
                     .opacity(isMovingCard ? 0.3 : 1)
                     .animation(.easeInOut(duration: 0.3))
                     
-                    OptionButton(imageName: "Option-Superlike",
+                    ActionButton(imageName: "Action-Superlike",
                                  overlayColor: Color.blue,
                                  gradient: Gradient(colors: [Color.blue, Color.purple])) {
                                     
@@ -80,7 +80,7 @@ struct ContentView: View {
                     .opacity(isMovingCard ? 0.3 : 1)
                     .animation(.easeInOut(duration: 0.3))
                     
-                    OptionButton(imageName: "Option-Like",
+                    ActionButton(imageName: "Action-Like",
                                  overlayColor: Color.yellow,
                                  gradient: Gradient(colors: [Color.green, Color.yellow])) {
                                     

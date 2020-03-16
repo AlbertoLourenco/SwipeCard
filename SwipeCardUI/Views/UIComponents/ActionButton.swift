@@ -1,5 +1,5 @@
 //
-//  OptionButton.swift
+//  ActionButton.swift
 //  SwipeCardUI
 //
 //  Created by Alberto Lourenço on 3/12/20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct OptionButton: View {
+struct ActionButton: View {
     
     var imageName: String = ""
     var overlayColor: Color = Color.blue
@@ -41,9 +41,9 @@ struct OptionButton: View {
     }
 }
 
-struct OptionButton_Previews: PreviewProvider {
+struct ActionButton_Previews: PreviewProvider {
     static var previews: some View {
-        OptionButton(imageName: "Option-Like",
+        ActionButton(imageName: "Action-Like",
                      overlayColor: Color.blue,
                      gradient: Gradient(colors: [Color.blue, Color.purple])) {}
     }

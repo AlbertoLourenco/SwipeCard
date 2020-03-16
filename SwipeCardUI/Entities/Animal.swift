@@ -14,7 +14,7 @@ struct Animal: Identifiable {
     var order: Int
     var name: String
     var description: String
-    var imageName: String
+    var gallery: Array<String>
     
     var category: Category
 }
