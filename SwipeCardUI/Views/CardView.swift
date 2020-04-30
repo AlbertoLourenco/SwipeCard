@@ -51,36 +51,39 @@ struct CardView: View {
                     .opacity(action != .none ? 1 : 0)
                     .animation(.easeInOut)
                 
-                VStack (alignment: .leading, spacing: 10) {
-                    
-                    Spacer()
+                if !isShowing {
 
-                    HStack {
-
-                        Image(item.category.imageName)
-                            .resizable()
-                            .renderingMode(Image.TemplateRenderingMode.template)
-                            .foregroundColor(Color.white)
-                            .padding(5)
-                            .frame(width: 35, height: 35)
-                            .background(item.category.color)
-                            .clipShape(Circle())
+                    VStack (alignment: .leading, spacing: 10) {
                         
-                        Text(item.name)
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
+                        Spacer()
+
+                        HStack {
+
+                            Image(item.category.imageName)
+                                .resizable()
+                                .renderingMode(Image.TemplateRenderingMode.template)
+                                .foregroundColor(Color.white)
+                                .padding(5)
+                                .frame(width: 35, height: 35)
+                                .background(item.category.color)
+                                .clipShape(Circle())
+                            
+                            Text(item.name)
+                                .font(.largeTitle)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.white)
+                        }
+                        
+                        Divider()
+                            .background(Color.white)
+                        
+                        Text(item.description)
                             .foregroundColor(Color.white)
                     }
-                    
-                    Divider()
-                        .background(Color.white)
-                    
-                    Text(item.description)
-                        .foregroundColor(Color.white)
+                    .padding(20)
+                    .frame(width: UIScreen.main.bounds.width - 60)
+                    .opacity(isShowing ? 0 : 1)
                 }
-                .padding(20)
-                .frame(width: UIScreen.main.bounds.width - 60)
-                .opacity(isShowing ? 0 : 1)
             }
             .frame(width: isShowing ? UIScreen.main.bounds.width : UIScreen.main.bounds.width - 60,
                    height: isShowing ? UIScreen.main.bounds.height : UIScreen.main.bounds.height - 325)
@@ -88,90 +91,93 @@ struct CardView: View {
             .shadow(radius: 5)
             .animation(.easeInOut)
             
-            VStack {
+            if isShowing {
 
-                Spacer()
-                
-                PageControl(page: pageIndex, total: item.gallery.count)
-                    .opacity(isShowing ? 1 : 0)
-                    .offset(y: fullScreenGallery ? 200 : 0)
-                    .animation(.spring())
-                
-                VStack (alignment: .leading, spacing: 20) {
-                    
-                    HStack {
-                        
-                        Image(item.category.imageName)
-                            .resizable()
-                            .renderingMode(Image.TemplateRenderingMode.template)
-                            .foregroundColor(Color.white)
-                            .padding(5)
-                            .frame(width: 35, height: 35)
-                            .background(item.category.color)
-                            .clipShape(Circle())
-                        
-                        Text(item.name)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color.white)
-                    }
-                    
-                    Text(item.description)
-                        .font(.body)
-                        .fontWeight(.regular)
-                        .foregroundColor(Color.white)
-                    
-                    //-------------------------------------
-                    //  Actions
-                    //-------------------------------------
-                    
-                    VStack (alignment: .center) {
+                VStack {
 
-                        HStack (spacing: 25) {
+                    Spacer()
+                    
+                    PageControl(page: pageIndex, total: item.gallery.count)
+                        .opacity(isShowing ? 1 : 0)
+                        .offset(y: fullScreenGallery ? 200 : 0)
+                        .animation(.spring())
+                    
+                    VStack (alignment: .leading, spacing: 20) {
+                        
+                        HStack {
                             
-                            ActionButton(imageName: "Action-Dislike",
-                                         overlayColor: Color.red,
-                                         gradient: Gradient(colors: [Color.pink, Color.red])) {
-                                            
-                                            // TO DO - Dislike
-                                            
-                                            self.action = .dislike
-                                            self.dismissWithAction()
-                            }
+                            Image(item.category.imageName)
+                                .resizable()
+                                .renderingMode(Image.TemplateRenderingMode.template)
+                                .foregroundColor(Color.white)
+                                .padding(5)
+                                .frame(width: 35, height: 35)
+                                .background(item.category.color)
+                                .clipShape(Circle())
                             
-                            ActionButton(imageName: "Action-Superlike",
-                                         overlayColor: Color.blue,
-                                         gradient: Gradient(colors: [Color.blue, Color.purple])) {
-                                            
-                                            // TO DO - Superlike
-                                            
-                                            self.action = .superlike
-                                            self.dismissWithAction()
-                            }
-                            
-                            ActionButton(imageName: "Action-Like",
-                                         overlayColor: Color.yellow,
-                                         gradient: Gradient(colors: [Color.green, Color.yellow])) {
-                                            
-                                            // TO DO - Like
-                                            
-                                            self.action = .like
-                                            self.dismissWithAction()
-                            }
+                            Text(item.name)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.white)
                         }
-                        .scaleEffect(0.75)
+                        
+                        Text(item.description)
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(Color.white)
+                        
+                        //-------------------------------------
+                        //  Actions
+                        //-------------------------------------
+                        
+                        VStack (alignment: .center) {
+
+                            HStack (spacing: 25) {
+                                
+                                ActionButton(imageName: "Action-Dislike",
+                                             overlayColor: Color.red,
+                                             gradient: Gradient(colors: [Color.pink, Color.red])) {
+                                                
+                                                // TO DO - Dislike
+                                                
+                                                self.action = .dislike
+                                                self.dismissWithAction()
+                                }
+                                
+                                ActionButton(imageName: "Action-Superlike",
+                                             overlayColor: Color.blue,
+                                             gradient: Gradient(colors: [Color.blue, Color.purple])) {
+                                                
+                                                // TO DO - Superlike
+                                                
+                                                self.action = .superlike
+                                                self.dismissWithAction()
+                                }
+                                
+                                ActionButton(imageName: "Action-Like",
+                                             overlayColor: Color.yellow,
+                                             gradient: Gradient(colors: [Color.green, Color.yellow])) {
+                                                
+                                                // TO DO - Like
+                                                
+                                                self.action = .like
+                                                self.dismissWithAction()
+                                }
+                            }
+                            .scaleEffect(0.75)
+                        }
+                        .frame(width: UIScreen.main.bounds.width - 30)
                     }
-                    .frame(width: UIScreen.main.bounds.width - 30)
+                    .padding(20)
+                    .frame(width: UIScreen.main.bounds.width)
+                    .background(Color(UIColor(red:0.07, green:0.16, blue:0.21, alpha:1.0)))
+                    .offset(y: isShowing ? 0 : 300)
+                    .offset(y: fullScreenGallery ? 300 : 0)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .shadow(radius: 5)
+                    .opacity(isShowing ? 1 : 0)
+                    .animation(.easeInOut)
                 }
-                .padding(20)
-                .frame(width: UIScreen.main.bounds.width)
-                .background(Color(UIColor(red:0.07, green:0.16, blue:0.21, alpha:1.0)))
-                .offset(y: isShowing ? 0 : 300)
-                .offset(y: fullScreenGallery ? 300 : 0)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .shadow(radius: 5)
-                .opacity(isShowing ? 1 : 0)
-                .animation(.easeInOut)
             }
         }
         .rotationEffect(Angle(degrees: isShowing ? 0 : Double(self.dragState.width / 15.0)))
@@ -182,71 +188,75 @@ struct CardView: View {
                 //-----------------------------------------------------
                 //  Drag - dismiss (to close detail view)
                 //-----------------------------------------------------
-                                  DragGesture()
-                                      .onChanged{ value in
-                                          
-                                        self.isMoving = true
-
-                                        var translation = value.translation
-                                        translation.width = 0
-                                        
-                                        self.dragState = translation
-                                        
-                                        if self.dragState.height < 0 {
-                                            self.dragState = .zero
-                                        }
-                                        
-                                        if self.dragState.height > 50 {
-                                            self.dismissDetail()
-                                        }
-                                      }
-                                      .onEnded{ value in
-                                        
-                                        if self.dragState.height < 50 {
-                                            self.dragState = .zero
-                                        }
-                                      }
+                DragGesture()
+                    .onChanged{ value in
+                        
+                        self.isMoving = true
+                        
+                        var translation = value.translation
+                        translation.width = 0
+                        
+                        self.dragState = translation
+                        
+                        if self.dragState.height < 0 {
+                            self.dragState = .zero
+                        }
+                        
+                        if self.dragState.height > 50 {
+                            self.dismissDetail()
+                        }
+                }
+                .onEnded{ value in
+                    
+                    if self.dragState.height < 50 {
+                        self.dragState = .zero
+                    }
+                }
             :
                 //-----------------------------------------------------
                 //  Drag - actions (like, dislike and superlike)
                 //-----------------------------------------------------
-                               DragGesture()
-                                   .onChanged{ value in
-                                       
-                                       self.isMoving = true
-                                       
-                                       self.action = .none
-                                       
-                                       if value.translation.height <= -120 {
-                                           self.action = .superlike
-                                       }
-                                       
-                                       if value.translation.width >= 50 {
-                                           self.action = .like
-                                       }else
-                                           if value.translation.width <= -50 {
-                                               self.action = .dislike
-                                           }
-
-                                       self.dragState = value.translation
-                                   }
-                                   .onEnded{ value in
-                                       
-                                       self.isMoving = false
-                                       
-                                       if self.action != .none {
-                                        
-                                           self.onRemove(self.item) // remove item from array
-                                           
-                                           DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                               self.action = .none
-                                               self.dragState = .zero
-                                           }
-                                       }else{
-                                           self.action = .none
-                                           self.dragState = .zero
-                                       }
-                                   }
+                DragGesture()
+                    .onChanged{ value in
+                        
+                        self.dragState = value.translation
+                        
+                        self.isMoving = true
+                        
+                        if value.translation.width <= -50 {
+                            self.action = .dislike
+                            return
+                        }
+                        
+                        if value.translation.width >= 50 {
+                            self.action = .like
+                            return
+                        }
+                        
+                        if value.translation.height <= -120 {
+                            self.action = .superlike
+                            return
+                        }
+                        
+                        self.action = .none
+                }
+                .onEnded{ value in
+                    
+                    self.isMoving = false
+                    
+                    if self.action != .none {
+                        
+                        self.onRemove(self.item) // remove item from array
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.action = .none
+                            self.dragState = .zero
+                        }
+                    }else{
+                        self.action = .none
+                        self.dragState = .zero
+                    }
+            }
         )
         .onTapGesture {
             

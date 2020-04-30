@@ -22,8 +22,7 @@ struct ContentView: View {
         
         ZStack {
 
-            Color(UIColor(red:0.10, green:0.18, blue:0.27, alpha:1.0))
-                .opacity(0.3)
+            Color(UIColor(red: 0.03, green: 0.03, blue: 0.08, alpha: 1.00))
                 .edgesIgnoringSafeArea(.all)
             
             Text("Loading more...")

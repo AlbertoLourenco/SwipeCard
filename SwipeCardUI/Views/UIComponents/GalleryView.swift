@@ -91,9 +91,12 @@ struct GalleryView: UIViewRepresentable {
     func updateUIView(_ view: GalleryScrollView, context: UIViewRepresentableContext<GalleryView>) {
         
         view.scrollView.isUserInteractionEnabled = self.scrollEnabled
-        
-        UIView.animate(withDuration: 0.3) {
-            view.imgShadow.alpha = self.fullScreen ? 0.5 : 0.8
+
+        if self.fullScreen {
+
+            UIView.animate(withDuration: 0.3) {
+                view.imgShadow.alpha = self.fullScreen ? 0.5 : 0.8
+            }
         }
     }
 }

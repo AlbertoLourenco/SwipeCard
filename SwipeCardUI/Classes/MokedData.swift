@@ -63,6 +63,10 @@ struct MockedData {
                            gallery: MockedData.randomGallery(imageName: "Snake"),
                            category: Category(color: Color(UIColor(red:0.91, green:0.25, blue:0.09, alpha:1.0)), imageName: "Category-Snake"))
         
-        return [dog, cat, bird, octopus, owl, frog, snake].reversed()
+        #if DEBUG
+            return [dog].reversed()
+        #else
+            return [dog, cat, bird, octopus, owl, frog, snake].reversed()
+        #endif
     }
 }

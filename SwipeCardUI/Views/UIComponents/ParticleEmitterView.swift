@@ -65,23 +65,29 @@ class ParticleEmitter: UIView {
             
             case .like:
                 
-                emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
-                
-                UIView.animate(withDuration: 0.3) {
-                    self.vwActionMask.backgroundColor = UIColor.black
-                    self.vwActionMask.alpha = 0.3
-                    self.emitterLayer.opacity = 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+
+                    self.emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
+                    
+                    UIView.animate(withDuration: 0.3) {
+                        self.vwActionMask.backgroundColor = UIColor.black
+                        self.vwActionMask.alpha = 0.3
+                        self.emitterLayer.opacity = 1
+                    }
                 }
                 break
             
             case .superlike:
                 
-                emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
-                
-                UIView.animate(withDuration: 0.3) {
-                    self.vwActionMask.backgroundColor = UIColor.blue
-                    self.vwActionMask.alpha = 0.1
-                    self.emitterLayer.opacity = 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+
+                    self.emitterLayer.emitterCells = [self.getEmitterCell(for: action)]
+                    
+                    UIView.animate(withDuration: 0.3) {
+                        self.vwActionMask.backgroundColor = UIColor.blue
+                        self.vwActionMask.alpha = 0.1
+                        self.emitterLayer.opacity = 1
+                    }
                 }
                 break
             
